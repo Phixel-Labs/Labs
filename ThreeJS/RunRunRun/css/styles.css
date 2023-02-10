@@ -1,0 +1,268 @@
+/*  Variables  */
+:root {
+  --sidebar-width: 25%;
+  --bar-size: 2.5rem;
+  --size: 16px;
+  --padding: calc(var(--size) * 2);
+  --color-black: #22272f;
+  --color-white: #EBF3FF;
+  --color-gray: #727982;
+  --color-main: var(--color-black);
+  --color-sub: var(--color-gray);
+  --container-size-width: calc(100vw - (var(--padding) * 4));
+  --container-size-height: calc(100vh - (var(--padding) * 4));
+  --container-margin: calc((100vh - var(--container-size-height))/2) calc((100vw - var(--container-size-width))/2);
+  --container-radius: calc(var(--padding));
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.ttf) format('truetype');
+}
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: var(--size);
+  line-height: calc(var(--size) * 1.25);
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: var(--padding) 0;
+  text-align: left;
+}
+h1 {
+  font-size: calc(var(--size) * 1.5);
+}
+h2 {
+  font-size: calc(var(--size) * 1.25);
+}
+h3 {
+  font-size: var(--size);
+}
+h4 {
+  font-size: calc(var(--size) * 0.75);
+}
+h5 {
+  font-size: calc(var(--size) * 0.5);
+}
+h6 {
+  font-size: calc(var(--size) * 0.25);
+}
+.hidden {
+  display: none !important;
+}
+#container,
+#start {
+  background-color: var(--color-sub);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--container-size-width);
+  height: var(--container-size-height);
+  margin: var(--container-margin);
+  position: relative;
+  border-radius: var(--container-radius);
+  overflow: hidden;
+  transition: all 0.5s;
+  color: var(--color-white);
+}
+#start .content {
+  text-align: center;
+  overflow: auto;
+  padding: calc(var(--padding)*2);
+  width: 100%;
+}
+#start * {
+  text-align: center;
+}
+#container #sidebar,
+#container #content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+#container #sidebar {
+  transition: all 0.5s;
+  width: var(--sidebar-width);
+  background-color: var(--color-main);
+  padding: var(--padding);
+  text-align: center;
+  overflow: auto;
+}
+#container #sidebar .key {
+  display: inline-block;
+  border-radius: calc(var(--padding)/4);
+  padding: calc(var(--padding)/4);
+  border: solid 2px var(--color-white);
+  width: calc(var(--size) * 2.5);
+  height: calc(var(--size) * 2.5);
+  text-align: center;
+  transition: all 0.5s;
+  cursor: crosshair;
+}
+#container #sidebar .key:hover {
+  color: var(--color-sub);
+  border-color: var(--color-sub);
+  background-color: var(--color-white);
+}
+#container #content {
+  width: calc(100% - var(--sidebar-width));
+  background-color: var(--color-sub);
+  position: relative;
+}
+#container #content #scene {
+  width: 100%;
+  height: 100%;
+}
+#container #content #info {
+  position: absolute;
+  bottom: var(--padding);
+  left: var(--padding);
+}
+#container #content #info #speed {
+  font-size: calc(var(--size) * 2);
+}
+#container #content #info #tips {
+  font-size: calc(var(--size) * 0.75);
+}
+#container #content #radar {
+  position: absolute;
+  top: var(--padding);
+  right: var(--padding);
+}
+#container #content #radar #direction {
+  text-align: center;
+}
+#container #content #radar #direction #arrow {
+  display: inline-block;
+  font-size: calc(var(--size) * 4);
+  transition: all 0.2s;
+}
+#container #content #radar #direction #distance {
+  font-size: calc(var(--size) * 0.75);
+  transition: all 0.2s;
+}
+#container #hide-sidebar {
+  position: absolute;
+  bottom: var(--bar-size);
+  right: var(--bar-size);
+  background-color: var(--color-main);
+  color: var(--color-white);
+  border: none;
+  border-radius: 50%;
+  width: var(--bar-size);
+  height: var(--bar-size);
+  line-height: var(--bar-size);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+#container #hide-sidebar:hover {
+  width: calc(var(--bar-size) * 1.5);
+  height: calc(var(--bar-size) * 1.5);
+  color: var(--color-sub);
+  background-color: var(--color-white);
+}
+.colors .color {
+  display: inline-block;
+  border-radius: 50%;
+  margin: calc(var(--padding)/8);
+  border: solid 2px var(--color-white);
+  width: calc(var(--size) * 1.5);
+  height: calc(var(--size) * 1.5);
+  text-align: center;
+  transition: all 0.5s;
+  background-color: var(--color-sub);
+  cursor: pointer;
+}
+.colors .color:hover,
+.colors .color.selected {
+  color: var(--color-sub);
+  border-color: var(--color-sub);
+}
+.colors .color.selected {
+  border-width: 4px ;
+}
+.button {
+  border-radius: calc(var(--padding)/4);
+  cursor: pointer;
+  display: inline-block;
+  min-height: calc(var(--size) * 2.5);
+  padding: calc(var(--padding)/4);
+  text-align: center;
+  transition: all 0.5s;
+  background: transparent;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+}
+.button:hover {
+  color: var(--color-main);
+  background-color: var(--color-white);
+}
+.fullsize #container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+}
+.fullsize #container #sidebar {
+  margin-left: calc(var(--sidebar-width) * -1);
+}
+.fullsize #container #content {
+  width: 100%;
+}
+canvas {
+  background-color: var(--color-sub);
+  width: 100% !important;
+  height: 100% !important;
+}
+.hidden {
+  display: none;
+}
+@media (max-width: 1200px) {
+  #container #sidebar {
+    width: 33.33333333%;
+  }
+  #container #content {
+    width: calc(100% - 33.33333333%);
+  }
+  .fullsize #sidebar {
+    margin-left: calc(33.33333333% * -1) !important;
+  }
+}
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+  }
+  #container #sidebar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: var(--bar-size);
+  }
+  #container #content {
+    width: 100%;
+    margin-top: var(--bar-size);
+  }
+  #container .hidder {
+    display: none;
+  }
+  .fullsize #sidebar {
+    margin-left: 0 !important;
+  }
+}
