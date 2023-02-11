@@ -53,18 +53,16 @@
 			var tips = [ 
 				<?php
 					foreach($data['tips'] as $key => $value) {
-						echo '"'.$value.
-						'",'.
-						"\n";
+						echo '"'.$value.'",';
 					} 
 				?>
 			];
 			var models={};
 			<?php
 				foreach($data['models'] as $key => $value) {
-					echo 'models.'.$key.' = {'."\n";
+					echo 'models.'.$key.' = {';
 					foreach($value as $key_ => $value_) {
-						echo '"'.$key_.'" : "'.$value_.'",'."\n";
+						echo '"'.$key_.'" : "'.$value_.'",';
 					} 
 					echo '};'."\n";
 				}
@@ -147,5 +145,7 @@
 </html>
 <?
 	$html = ob_get_clean();
-	echo trim($html);
+	$html = trim($html);
+	file_put_contents('index.html', $html);
+	echo $html;
 ?>

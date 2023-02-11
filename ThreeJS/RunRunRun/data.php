@@ -10,7 +10,12 @@
 	// Text of page (instructions and introduction)
 	$data['instructions'] = "
 		<b>Yo!</b> Drive with the <br>
-		<b><span class='key'>W</span> <span class='key'>A</span> <span class='key'>S</span> <span class='key'>D</span></b><br>
+		<b>
+			<span class='key'>W</span>
+			<span class='key'>A</span>
+			<span class='key'>S</span>
+			<span class='key'>D</span>
+		</b><br>
 		keys, collect fuel before time's up!<br>
 		So what are you waiting for? Let's go!
 	";
