@@ -1,6 +1,7 @@
 # Run Run Run! 🚗
 
-Get behind the wheel and drive through the broken city, destroying everything in your path. This 3D car game is built with ThreeJS and CannonJS and will test your car racing skills.
+Get behind the wheel and speed through the landscape in a high-stakes chase. Catch the invader and outmaneuver it at every turn.
+This 3D car game is built with ThreeJS and CannonJS and will test your car racing skills.
 
 ## Game Objective
 
