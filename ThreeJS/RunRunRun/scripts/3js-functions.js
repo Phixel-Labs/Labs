@@ -191,7 +191,7 @@ function addLight(params = defaultLight) {
 			return;
 		}
 	}
-	// Add light to scene  
+	// Add light to scene 
 	params.scene.add(light);
 	// Optionally add shadow camera properties 
 	if (params.shadow) {
@@ -793,7 +793,7 @@ function add_XYZ_GUI(gui, object, folderName) {
 
 function updateModel(world, vars, model, body, movement, gravity, delta, data, velocity, direction, target) {
 
-	// Destructuring the  data
+	// Destructuring the data
 	var delta = 1 / 60;
 	var speed = data.multiply.speed;
 	var multiplyPosition = data.multiply.position;

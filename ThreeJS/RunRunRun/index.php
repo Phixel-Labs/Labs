@@ -53,7 +53,7 @@
 			var tips = [ 
 				<?php
 					foreach($data['tips'] as $key => $value) {
-						echo '"'.$value.'",';
+						echo '"'.$value.'", ';
 					} 
 				?>
 			];
@@ -62,7 +62,7 @@
 				foreach($data['models'] as $key => $value) {
 					echo 'models.'.$key.' = {';
 					foreach($value as $key_ => $value_) {
-						echo '"'.$key_.'" : "'.$value_.'",';
+						echo '"'.$key_.'" : "'.$value_.'", ';
 					} 
 					echo '};'."\n";
 				}
@@ -104,6 +104,7 @@
 						<p class="instructions">
 							<?php echo $data['instructions']; ?>
 						</p>
+						<br>
 						<h2>
 							<?php echo $data['color']; ?>
 						</h2>
@@ -129,7 +130,7 @@
 				</div>
 				<div id="info">
 					<div>
-						<span id="speed"></span>
+						<span id="speed">0</span>
 						km
 					</div>
 					<div id="tips"></div>

@@ -5,7 +5,7 @@
 		<!-- title, description, keywords, author, and copyright -->
 		<title>
 			Run Run Run! 🚗		</title>
-		<meta name="description" content="Get behind the wheel and drive through the broken city, destroying everything in your path.">
+		<meta name="description" content="Get behind the wheel and speed through the landscape in a high-stakes chase. Catch the invader and outmaneuver it at every turn.">
 		<meta name="keywords" content="3D car game, car racing, car destruction, ThreeJS, CannonJS, GSAP">
 		<meta name="author" content="Phixel">
 		<meta name="copyright" content="Phixel | © 2023 ">
@@ -32,11 +32,11 @@
 		<script src="./scripts/3js-setup.js" defer></script>
 		<script defer>
 			var tips = [ 
-				"Accelerate and show off your skills!","Keep an eye on your gas tank, it's running low!","The real challenge starts now!","Speed and control are equally important!","Don't let obstacles slow you down, keep pushing forward!","Put your driving skills to the test with the tricky turns!","You've got a limited time, can you make it to the the next gas tank?!","There's very little time, are you brave enough to make it?","Stay focused and be ready for anything!","Drive with cool and confidence!","It's all about having a great time an winning!","The journey may be tough, but the reward is worth it!","Drive fast, no need for safely, and drive like a pro!","You got this! Show the world what you're made of!","It's not just about the time, it's about the excitement of the ride!","The need for speed is calling, answer the call and show off your skills on the road!","Rev up your engine and unleash your full speed potential! Show the road who's boss!","Time is running out, step on the gas and make every second count towards reaching the next gas tank!",			];
+				"Accelerate and show off your skills!", "Keep an eye on your gas tank, it's running low!", "The real challenge starts now!", "Speed and control are equally important!", "Don't let obstacles slow you down, keep pushing forward!", "Put your driving skills to the test with the tricky turns!", "You've got a limited time, can you make it to the the next gas tank?!", "There's very little time, are you brave enough to make it?", "Stay focused and be ready for anything!", "Drive with cool and confidence!", "It's all about having a great time an winning!", "The journey may be tough, but the reward is worth it!", "Drive fast, no need for safely, and drive like a pro!", "You got this! Show the world what you're made of!", "It's not just about the time, it's about the excitement of the ride!", "The need for speed is calling, answer the call and show off your skills on the road!", "Rev up your engine and unleash your full speed potential! Show the road who's boss!", "Time is running out, step on the gas and make every second count towards reaching the next gas tank!", 			];
 			var models={};
-			models.active = {"Ball-01" : "media/model/active.Ball-01.glb","Barrel-01" : "media/model/active.Barrel-01.glb","Barrel-02" : "media/model/active.Barrel-02.glb","Barrel-03" : "media/model/active.Barrel-03.glb","Barrel-04" : "media/model/active.Barrel-04.glb","Barrier-01" : "media/model/active.Barrier-01.glb","Barrier-02" : "media/model/active.Barrier-02.glb","Brick-01" : "media/model/active.Brick-01.glb","Brick-02" : "media/model/active.Brick-02.glb","Cone-01" : "media/model/active.Cone-01.glb","Cone-02" : "media/model/active.Cone-02.glb","Cone-03" : "media/model/active.Cone-03.glb","Road-Block" : "media/model/active.Road-Block.glb","Tyre-01" : "media/model/active.Tyre-01.glb","Tyre-02" : "media/model/active.Tyre-02.glb","Tyre-03" : "media/model/active.Tyre-03.glb","Tyres" : "media/model/active.Tyres.glb",};
-models.car = {"Ambulance" : "media/model/car.Ambulance.glb","Car-01" : "media/model/car.Car-01.glb","Car-02" : "media/model/car.Car-02.glb","Police" : "media/model/car.Police.glb","Race-Car" : "media/model/car.Race-Car.glb","truck" : "media/model/car.truck.glb",};
-models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb","Manhole" : "media/model/static.Manhole.glb","Speed-Booster-01" : "media/model/static.Speed-Booster-01.glb","Speed-Booster-02" : "media/model/static.Speed-Booster-02.glb","Speed-Booster-03" : "media/model/static.Speed-Booster-03.glb",};
+			models.active = {"Ball-01" : "media/model/active.Ball-01.glb", "Barrel-01" : "media/model/active.Barrel-01.glb", "Barrel-02" : "media/model/active.Barrel-02.glb", "Barrel-03" : "media/model/active.Barrel-03.glb", "Barrel-04" : "media/model/active.Barrel-04.glb", "Barrier-01" : "media/model/active.Barrier-01.glb", "Barrier-02" : "media/model/active.Barrier-02.glb", "Brick-01" : "media/model/active.Brick-01.glb", "Brick-02" : "media/model/active.Brick-02.glb", "Cone-01" : "media/model/active.Cone-01.glb", "Cone-02" : "media/model/active.Cone-02.glb", "Cone-03" : "media/model/active.Cone-03.glb", "Road-Block" : "media/model/active.Road-Block.glb", "Tyre-01" : "media/model/active.Tyre-01.glb", "Tyre-02" : "media/model/active.Tyre-02.glb", "Tyre-03" : "media/model/active.Tyre-03.glb", "Tyres" : "media/model/active.Tyres.glb", };
+models.car = {"Ambulance" : "media/model/car.Ambulance.glb", "Car-01" : "media/model/car.Car-01.glb", "Car-02" : "media/model/car.Car-02.glb", "Police" : "media/model/car.Police.glb", "Race-Car" : "media/model/car.Race-Car.glb", "truck" : "media/model/car.truck.glb", };
+models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb", "Manhole" : "media/model/static.Manhole.glb", "Speed-Booster-01" : "media/model/static.Speed-Booster-01.glb", "Speed-Booster-02" : "media/model/static.Speed-Booster-02.glb", "Speed-Booster-03" : "media/model/static.Speed-Booster-03.glb", };
 
 			function showTip() {
 				const randomTip = tips[Math.floor(Math.random() * tips.length)];
@@ -55,13 +55,14 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb","Manhole
 					Run Run Run! 🚗				</h1>
 				<p clsss="intro">
 					
-		<b>Hey there speedster!</b><br>
-		Get ready for a thrilling journey through the obstacle course.<br>
-		Take control of the wheel and demonstrate your driving abilities as you maneuver around obstacles.<br>
-		This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!
+		<h2>Hey there speedster! ⚡</h2><br>
+		<h3>Catch the invader 😡 and don't let it catch you first 🏅</h3>
+		<p>Get ready for a thrilling journey through the landscape. </p>
+		<p>Take control of the wheel and demonstrate your driving abilities as you maneuver around.<br>
+		This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!</p>
 					</p>
 				<button onclick="render(); $('#start').addClass('hidden'); $('#container').removeClass('hidden');" class="button">
-					Let's run!				</button>
+					Let's run! 🥇				</button>
 			</div>
 		</div>
 		<div id="container" class="hidden">
@@ -81,16 +82,18 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb","Manhole
 			<span class='key'>S</span>
 			<span class='key'>D</span>
 		</b><br>
-		keys, collect fuel before time's up!<br>
-		So what are you waiting for? Let's go!
+		keys, collect fuel ⛽ before time's up! 🕒<br>
+		Catch the invader 👿 and dont let if catch you!<br>
+		So what are you waiting for? Let's go! 🏁
 							</p>
+						<br>
 						<h2>
-							Change the colors!						</h2>
+							Vibrant Hues!						</h2>
 						<h3>
-							Change the world!						</h3>
+							A Transformed World!						</h3>
 						<div id="subColor" class="colors"></div>
 						<h3>
-							Change the interface!						</h3>
+							Revamp the Interface!						</h3>
 						<div id="mainColor" class="colors"></div>
 					</div>
 				</div>
@@ -106,7 +109,7 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb","Manhole
 				</div>
 				<div id="info">
 					<div>
-						<span id="speed"></span>
+						<span id="speed">0</span>
 						km
 					</div>
 					<div id="tips"></div>

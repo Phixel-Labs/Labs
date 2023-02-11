@@ -1,4 +1,4 @@
-/*  Variables  */
+/* Variables */
 :root {
   --sidebar-width: 25%;
   --bar-size: 2.5rem;
@@ -21,6 +21,12 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Audiowide';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/audiowide/v16/l7gdbjpo0cum0ckerWCtkQ.ttf) format('truetype');
+}
 html,
 body {
   height: 100vh;
@@ -39,26 +45,35 @@ h3,
 h4,
 h5,
 h6 {
-  padding: var(--padding) 0;
+  padding: calc(var(--size) * 0.5) 0;
   text-align: left;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: 100;
+}
 h1 {
-  font-size: calc(var(--size) * 1.5);
+  font-size: calc(var(--size) * 2);
 }
 h2 {
-  font-size: calc(var(--size) * 1.25);
+  font-size: calc(var(--size) * 1.75);
 }
 h3 {
-  font-size: var(--size);
+  font-size: calc(var(--size) * 1.5);
 }
 h4 {
-  font-size: calc(var(--size) * 0.75);
+  font-size: calc(var(--size) * 1.25);
 }
 h5 {
-  font-size: calc(var(--size) * 0.5);
+  font-size: calc(var(--size) * 1);
 }
 h6 {
-  font-size: calc(var(--size) * 0.25);
+  font-size: calc(var(--size) * 0.75);
 }
 .hidden {
   display: none !important;
@@ -113,6 +128,7 @@ h6 {
   height: calc(var(--size) * 2.5);
   text-align: center;
   transition: all 0.5s;
+  font-family: 'Audiowide', sans-serif;
   cursor: crosshair;
 }
 #container #sidebar .key:hover {
@@ -124,6 +140,7 @@ h6 {
   width: calc(100% - var(--sidebar-width));
   background-color: var(--color-sub);
   position: relative;
+  user-select: none;
 }
 #container #content #scene {
   width: 100%;
@@ -136,6 +153,7 @@ h6 {
 }
 #container #content #info #speed {
   font-size: calc(var(--size) * 2);
+  font-family: 'Audiowide', sans-serif;
 }
 #container #content #info #tips {
   font-size: calc(var(--size) * 0.75);
@@ -156,6 +174,7 @@ h6 {
 #container #content #radar #direction #distance {
   font-size: calc(var(--size) * 0.75);
   transition: all 0.2s;
+  font-family: 'Audiowide', sans-serif;
 }
 #container #hide-sidebar {
   position: absolute;
@@ -178,25 +197,27 @@ h6 {
   color: var(--color-sub);
   background-color: var(--color-white);
 }
+.colors {
+  vertical-align: middle;
+}
 .colors .color {
   display: inline-block;
+  vertical-align: middle;
   border-radius: 50%;
   margin: calc(var(--padding)/8);
   border: solid 2px var(--color-white);
   width: calc(var(--size) * 1.5);
   height: calc(var(--size) * 1.5);
   text-align: center;
-  transition: all 0.5s;
+  transition: all 0.25s;
   background-color: var(--color-sub);
   cursor: pointer;
 }
-.colors .color:hover,
-.colors .color.selected {
-  color: var(--color-sub);
-  border-color: var(--color-sub);
+.colors .color:hover {
+  border-width: 3px;
 }
 .colors .color.selected {
-  border-width: 4px ;
+  border-width: 4px;
 }
 .button {
   border-radius: calc(var(--padding)/4);
@@ -209,10 +230,12 @@ h6 {
   background: transparent;
   border: 2px solid var(--color-white);
   color: var(--color-white);
+  font-family: 'Audiowide', sans-serif;
 }
 .button:hover {
-  color: var(--color-main);
-  background-color: var(--color-white);
+  color: var(--color-white);
+  background-color: var(--color-main);
+  border-color: var(--color-main);
 }
 .fullsize #container {
   width: 100vw;

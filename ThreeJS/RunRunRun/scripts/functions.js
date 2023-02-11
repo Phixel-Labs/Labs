@@ -9,8 +9,6 @@ const defaultSound = {
 	reverse: false,
 };
 
-
-
 function playSound(params = defaultSound) {
 	// Create a player for the audio file
 	var player = new Tone.Player(params.audio);
@@ -202,7 +200,7 @@ function createColorButtons(target, parent, colors) {
 
 	for (var i = 0; i < colors.length; i++) {
 		var colorName = colors[i][0];
-		$(parent).append('<button onClick="colorChange(\'' + colorName + '\', \'' + target + '\');" class="color ' + colorName + '-bg"></button>');
+		$(parent).append('<button onClick="colorChange(\'' + colorName + '\', \'' + target + '\');" title="' + colorName + '" class="color ' + colorName + ' ' + colorName + '-bg"></button>');
 	}
 }
 
@@ -215,8 +213,8 @@ function getColorByName(name) {
 }
 
 function colorChange(color, target) {
-	$('#'+target+' .selected').removeClass('selected');
-	$('#'+target+' .'+color).addClass('selected');
+	$('#'+target+' .color.selected').removeClass('selected');
+	$('#'+target+' .color.'+color).addClass('selected');
 
 	console.log(color);
 	window[target] = color;

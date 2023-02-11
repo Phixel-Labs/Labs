@@ -12,26 +12,28 @@ var load = false; // Declares if load is readu
 // Creates an array of color values
 var colors = [
 	["red", "#f93d4d"],
-	["green", "#8ac926"],
-	["blue", "#3a86ff"],
-	["yellow", "#ffbe0b"],
 	["orange", "#fb5607"],
+	["yellow", "#ffbe0b"],
+	["green", "#8ac926"],
+	["cyan", "#3da5d9"],
+	["blue", "#3a86ff"],
 	["purple", "#8338ec"],
 	["pink", "#ff006e"],
-	["cyan", "#3da5d9"],
 	["grey", "#8392a6"],
-	["noire", "#22272f"],
+	["black", "#22272f"],
 ];
 // colors = addRandomColors(colors, 5);
 
 // Assigns an initial random main and sub color
 var mainColor = colors[Math.floor(Math.random() * (colors.length))][0];
 var subColor = colors[Math.floor(Math.random() * (colors.length))][0];
+
+
 // Add colors to body
 createCSSColors(colors);
 
-createColorButtons('mainColor','#mainColor',colors);
-createColorButtons('subColor','#subColor',colors);
+createColorButtons('mainColor', '#mainColor', colors);
+createColorButtons('subColor', '#subColor', colors);
 
 var son;
 var audioS = {
@@ -212,6 +214,9 @@ createModel(playerParams).then(result => {
 	player = result;
 	target_player = player;
 	target = target_player;
+
+	colorChange(mainColor, 'mainColor');
+	colorChange(subColor, 'subColor');
 });
 
 
@@ -256,56 +261,6 @@ var params = {
 	invader,
 };
 console.log(params);
-
-///////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-var carParams = {
-	size: {
-		w: 1,
-		h: 1,
-		d: 1,
-	},
-	position: {
-		x: 0,
-		y: 0,
-		z: 0
-	},
-	rotation: {
-		x: 0,
-		y: 0,
-		z: 0
-	},
-	mass: 10,
-	color: subColor,
-	shadow: true,
-	receiveShadow: false,
-	model: cars[Math.floor(Math.random() * ((cars.length)-1))][1],
-}
-
-var character;
-var characterBody;
-loadModel(scene, carParams.model, carParams.size, carParams.position, carParams.rotation, carParams.mass, carParams.shadow, carParams.receiveShadow).then(result => {
-	character = result.model;
-	characterBody = result.body;
-	load = true;
-	target = character;
-
-});
-
-
-// Add blocks
-var activeModels = Object.entries(models.active);
-var activeModelsDistance = spanRadio;
 
 
 
@@ -414,9 +369,6 @@ function render() {
 		var delta = (time - prevTime) / 1000;
 		renderData = updateControls(renderData, time, prevTime, target_player);
 
-		//	updateModel(world, physicsParams, character, characterBody, movement, gravity, delta, updateData, velocity, direction, target_invader);
-
-
 		updatePosition(invader);
 		//updatePosition(player);
 
@@ -513,28 +465,3 @@ function render() {
 		prevTime = time;
 	}
 }
-
-/*
-function data() {
-	var gui = new dat.GUI();
-
-	var gui_char = gui.addFolder("Character");
-	add_XYZ_GUI(gui_char, character.position, 'Position');
-	add_XYZ_GUI(gui_char, character.rotation, 'Rotation');
-	add_XYZ_GUI(gui_char, velocity, 'velocity');
-
-
-	var gui_cam = gui.addFolder("Camera");
-	add_XYZ_GUI(gui_cam, camera.position, 'Position');
-	add_XYZ_GUI(gui_cam, camera.rotation, 'Rotation');
-
-	var gui_light = gui.addFolder("Light");
-	add_XYZ_GUI(gui_light, light.position, 'Position');
-	add_XYZ_GUI(gui_light, light.rotation, 'Rotation');
-
-	var gui_floor = gui.addFolder("Floor");
-	add_XYZ_GUI(gui_floor, floor.position, 'Position');
-	add_XYZ_GUI(gui_floor, floor.rotation, 'Rotation');
-
-
-} */

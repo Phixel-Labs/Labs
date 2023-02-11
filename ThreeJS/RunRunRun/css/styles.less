@@ -1,4 +1,4 @@
-/*  Variables  */
+/* Variables */
 :root {
 	--sidebar-width: 25%;
 	--bar-size: 2.5rem;
@@ -19,6 +19,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide');
 
 html,
 body {
@@ -39,33 +40,42 @@ h3,
 h4,
 h5,
 h6 {
-	padding: var(--padding) 0;
+	padding: calc(var(--size) * .5) 0;
 	text-align: left;
-	;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Audiowide', sans-serif;
+	font-weight: 100;
 }
 
 h1 {
-	font-size: calc(var(--size) * 1.5);
+	font-size: calc(var(--size) * 2);
 }
 
 h2 {
-	font-size: calc(var(--size) * 1.25);
+	font-size: calc(var(--size) * 1.75);
 }
 
 h3 {
-	font-size: var(--size);
+	font-size: calc(var(--size) * 1.5);
 }
 
 h4 {
-	font-size: calc(var(--size) * 0.75);
+	font-size: calc(var(--size) * 1.25);
 }
 
 h5 {
-	font-size: calc(var(--size) * 0.5);
+	font-size: calc(var(--size) * 1);
 }
 
 h6 {
-	font-size: calc(var(--size) * 0.25);
+	font-size: calc(var(--size) * .75);
 }
 
 .hidden {
@@ -132,6 +142,7 @@ h6 {
 			height: calc(var(--size) * @size);
 			text-align: center;
 			transition: all .5s;
+			font-family: 'Audiowide', sans-serif;
 			cursor: crosshair;
 
 			&:hover {
@@ -147,7 +158,7 @@ h6 {
 		width: calc(100% - var(--sidebar-width));
 		background-color: var(--color-sub);
 		position: relative;
-
+		user-select: none;
 		#scene {
 			width: 100%;
 			height: 100%;
@@ -160,6 +171,7 @@ h6 {
 
 			#speed {
 				font-size: calc(var(--size) * 2);
+				font-family: 'Audiowide', sans-serif;
 			}
 
 			#tips {
@@ -184,6 +196,7 @@ h6 {
 				#distance {
 					font-size: calc(var(--size) * 0.75);
 					transition: all .2s;
+					font-family: 'Audiowide', sans-serif;
 				}
 			}
 		}
@@ -216,29 +229,34 @@ h6 {
 
 
 .colors {
+	vertical-align: middle;
+
 	.color {
 		@size: 1.5;
 		display: inline-block;
+		vertical-align: middle;
 		border-radius: 50%;
 		margin: calc(var(--padding)/8);
 		border: solid 2px var(--color-white);
 		width: calc(var(--size) * @size);
 		height: calc(var(--size) * @size);
 		text-align: center;
-		transition: all .5s;
+		transition: all .25s;
 		background-color: var(--color-sub);
 		cursor: pointer;
 
-		&:hover, &.selected {
-			color: var(--color-sub);
-			border-color: var(--color-sub);
+		&:hover {
+			border-width: 3px;
 		}
-		&.selected{
-			border-width:4px ;
+
+		&.selected {
+			border-width: 4px;
 		}
+
 	}
 
 }
+
 
 .button {
 	@size: 2.5;
@@ -252,10 +270,12 @@ h6 {
 	background: transparent;
 	border: 2px solid var(--color-white);
 	color: var(--color-white);
+	font-family: 'Audiowide', sans-serif;
 
 	&:hover {
-		color: var(--color-main);
-		background-color: var(--color-white);
+		color: var(--color-white);
+		background-color: var(--color-main);
+		border-color: var(--color-main);
 	}
 }
 

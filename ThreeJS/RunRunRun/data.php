@@ -2,7 +2,7 @@
 	// Seo data
 	$data = [
 		'title' => 'Run Run Run! 🚗',
-		'description' => "Get behind the wheel and drive through the broken city, destroying everything in your path.",
+		'description' => "Get behind the wheel and speed through the landscape in a high-stakes chase. Catch the invader and outmaneuver it at every turn.",
 		'keywords' => '3D car game, car racing, car destruction, ThreeJS, CannonJS, GSAP',
 		'copyright' => "Phixel",
 		'url' => "https://phixel.net/samples/run-run-run",
@@ -16,20 +16,22 @@
 			<span class='key'>S</span>
 			<span class='key'>D</span>
 		</b><br>
-		keys, collect fuel before time's up!<br>
-		So what are you waiting for? Let's go!
+		keys, collect fuel ⛽ before time's up! 🕒<br>
+		Catch the invader 👿 and dont let if catch you!<br>
+		So what are you waiting for? Let's go! 🏁
 	";
 	$data['intro'] = "
-		<b>Hey there speedster!</b><br>
-		Get ready for a thrilling journey through the obstacle course.<br>
-		Take control of the wheel and demonstrate your driving abilities as you maneuver around obstacles.<br>
-		This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!
+		<h2>Hey there speedster! ⚡</h2><br>
+		<h3>Catch the invader 😡 and don't let it catch you first 🏅</h3>
+		<p>Get ready for a thrilling journey through the landscape. </p>
+		<p>Take control of the wheel and demonstrate your driving abilities as you maneuver around.<br>
+		This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!</p>
 	";
-	$data['start'] = "Let's run!";
+	$data['start'] = "Let's run! 🥇";
 
-	$data['color'] = "Change the colors!";
-	$data['subColor'] = "Change the world!";
-	$data['mainColor'] = "Change the interface!";
+	$data['color'] = "Vibrant Hues!";
+	$data['subColor'] = "A Transformed World!";
+	$data['mainColor'] = "Revamp the Interface!";
 	// Add tips for game play
 	$data['tips'] [] = "Accelerate and show off your skills!";
 	$data['tips'] [] = "Keep an eye on your gas tank, it's running low!";
@@ -53,7 +55,7 @@
 	$models_dir='media/model/';
 	$models_files = scandir($models_dir);
 	foreach ($models_files as $key => $value) {
-		if ($value != '.' &&  $value!= '..') {
+		if ($value != '.' && $value!= '..') {
 			$file = explode('.',$value);
 			$data['models'][strtolower($file[0])][$file[1]] = $models_dir.$value;
 		}
