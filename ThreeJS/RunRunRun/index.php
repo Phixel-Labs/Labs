@@ -1,9 +1,9 @@
 <?php
+	ob_start();
 	require('data.php');
 ?>
 
 <html>
-
 	<head>
 		<!-- character encoding -->
 		<meta charset="UTF-8">
@@ -144,5 +144,8 @@
 			</button>
 		</div>
 	</body>
-
 </html>
+<?
+	$html = ob_get_clean();
+	echo trim($html);
+?>
