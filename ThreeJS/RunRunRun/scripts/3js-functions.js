@@ -613,9 +613,6 @@ function createModel(params = defaultModel) {
 	}
 }
 
-
-
-
 /* Model */
 function loadModel(scene, path, scale, position, rotation, mass, shadow, receive, guide) {
 	return new Promise((resolve, reject) => {
@@ -661,6 +658,7 @@ function loadModel(scene, path, scale, position, rotation, mass, shadow, receive
 		});
 	});
 }
+
 /* Ball */
 function createBall(scene, color, size, position, rotation, mass, shadow, receive, guide) {
 	var modelGeometry = new THREE.SphereGeometry(size.r, size.w, size.h);
@@ -689,7 +687,7 @@ function createBall(scene, color, size, position, rotation, mass, shadow, receiv
 	};
 }
 
-function updateControls(params, time, prevTime, player) {
+function updateControls(params, time, prevTime, player, position = true, rotation = true) {
 	var delta = (time - prevTime) / 1000;
 
 
@@ -736,22 +734,33 @@ function updateControls(params, time, prevTime, player) {
 	player.body.position.x = player.body.position.x + position.x;
 	player.body.position.y = player.body.position.y + position.y;
 	player.body.position.z = player.body.position.z + position.z;
+	if (position) {
+		player.model.position.x = player.body.position.x;
+		player.model.position.y = player.body.position.y;
+		player.model.position.z = player.body.position.z;
+	} else {
+		player.model.position.copy(player.body.position);
+	}
+
+	var speed = abs(round((params.velocity.x + params.velocity.y + params.velocity.z) / 3, 0), 0);
+	$('#speed').text(speed);
 
 	var angleX = (player.body.position.x + position.x) - player.body.position.x;
 	var angleZ = (player.body.position.z + position.z) - player.body.position.z;
-
 	var angle = Math.atan2(angleX, angleZ);
 
-	player.model.position.copy(player.body.position);
+	if (rotation) {
+		model.rotation.y = angle;
+		model.rotation.z = ((angle / 100));
+	} else {
+		//this Apply the physicts to the rotation but need fixing
+		var euler = new THREE.Euler(0, angle, 0, 'YXZ');
+		var modelQuaternion = new THREE.Quaternion();
+		modelQuaternion.setFromEuler(euler);
 
-	var euler = new THREE.Euler(0, angle, 0, 'YXZ');
-	var modelQuaternion = new THREE.Quaternion();
-	modelQuaternion.setFromEuler(euler);
-
-	player.model.quaternion.copy(player.body.quaternion);
-	player.model.quaternion.multiply(modelQuaternion);
-
-
+		player.model.quaternion.copy(player.body.quaternion);
+		player.model.quaternion.multiply(modelQuaternion);
+	}
 
 	var coord = '';
 	coord += '<h3>velocity</h3>';
@@ -759,18 +768,13 @@ function updateControls(params, time, prevTime, player) {
 	coord += 'y: ' + round(params.velocity.y, 0) + '<br>';
 	coord += 'z: ' + round(params.velocity.z, 0) + '<br>';
 	coord += '<h3>position</h3>';
-	coord += 'x: ' + round(position.x, 0) + '<br>';
-	coord += 'y: ' + round(position.y, 0) + '<br>';
-	coord += 'z: ' + round(position.z, 0) + '<br>';
-	coord += '<h3>body position</h3>';
 	coord += 'x: ' + round(player.body.position.x, 0) + '<br>';
 	coord += 'y: ' + round(player.body.position.y, 0) + '<br>';
 	coord += 'z: ' + round(player.body.position.z, 0) + '<br>';
-	coord += '<h3>quaternion</h3>';
-	coord += 'x: ' + round(player.model.quaternion.x, 0) + '<br>';
-	coord += 'y: ' + round(player.model.quaternion.y, 0) + '<br>';
-	coord += 'z: ' + round(player.model.quaternion.z, 0) + '<br>';
-	coord += 'w: ' + round(player.model.quaternion.w, 0) + '<br>';
+	coord += '<h3>rotation</h3>';
+	coord += 'x: ' + round(player.model.rotation.x, 4) + '<br>';
+	coord += 'y: ' + round(player.model.rotation.y, 4) + '<br>';
+	coord += 'z: ' + round(player.model.rotation.z, 4) + '<br>';
 	coord += '<h3>angle</h3>';
 	coord += 'x: ' + (angleX) + '<br>';
 	coord += 'Z: ' + (angleZ) + '<br>';

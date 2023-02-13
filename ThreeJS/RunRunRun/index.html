@@ -3,13 +3,12 @@
 		<!-- character encoding -->
 		<meta charset="UTF-8">
 		<!-- title, description, keywords, author, and copyright -->
-		<title>
-			Run Run Run! 🚗		</title>
+		<title>Run Run Run: The Thrilling Car Game Experience 🚗</title>
 		<meta name="description" content="Get behind the wheel and speed through the landscape in a high-stakes chase. Catch the invader and outmaneuver it at every turn.">
-		<meta name="keywords" content="3D car game, car racing, car destruction, ThreeJS, CannonJS, GSAP">
+		<meta name="keywords" content="Adventure, Driving, Skill, Challenge, Fun, Car, Game,3D, Game, Racing, Destruction, ThreeJS, CannonJS, GSAP">
 		<meta name="author" content="Phixel">
-		<meta name="copyright" content="Phixel | © 2023 ">
-		<link rel="canonical" href="https://phixel.net/samples/run-run-run">
+		<meta name="copyright" content="Phixel | © Copyright 2023 ">
+		<link rel="canonical" href="https://phixel.net/labs/run-run-run">
 		<!-- viewport setting -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- search engine visibility -->
@@ -19,31 +18,23 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!-- JS dependencies -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" id="jquery"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" id="jQuery"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" id="gsap"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js" id="threeJS"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js" id="cannonJS"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" id="toneJS"></script>
 <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js" id="GLTFLoader"></script>
 
 		<!-- JS custom scripts -->
 		<script src="./scripts/functions.js"></script>
 		<script src="./scripts/3js-functions.js"></script>
 		<script src="./scripts/3js-setup.js" defer></script>
-		<script defer>
+		<script>
 			var tips = [ 
-				"Accelerate and show off your skills!", "Keep an eye on your gas tank, it's running low!", "The real challenge starts now!", "Speed and control are equally important!", "Don't let obstacles slow you down, keep pushing forward!", "Put your driving skills to the test with the tricky turns!", "You've got a limited time, can you make it to the the next gas tank?!", "There's very little time, are you brave enough to make it?", "Stay focused and be ready for anything!", "Drive with cool and confidence!", "It's all about having a great time an winning!", "The journey may be tough, but the reward is worth it!", "Drive fast, no need for safely, and drive like a pro!", "You got this! Show the world what you're made of!", "It's not just about the time, it's about the excitement of the ride!", "The need for speed is calling, answer the call and show off your skills on the road!", "Rev up your engine and unleash your full speed potential! Show the road who's boss!", "Time is running out, step on the gas and make every second count towards reaching the next gas tank!", 			];
+				"Accelerate and show off your skills!", "Keep an eye on your gas tank, it’s running low!", "The real challenge starts now!", "Speed and control are equally important!", "Don’t let obstacles slow you down, keep pushing forward!", "Put your driving skills to the test with the tricky turns!", "You’ve got a limited time, can you make it to the next gas tank?!", "There’s very little time, are you brave enough to make it?", "Stay focused and be ready for anything!", "Drive with cool and confidence!", "It’s all about having a great time and winning!", "The journey may be tough, but the reward is worth it!", "Drive fast, no need for safely, and drive like a pro!", "You got this! Show the world what you’re made of!", "It’s not just about the time, it’s about the excitement of the ride!", "The need for speed is calling, answer the call and show off your skills on the road!", "Rev up your engine and unleash your full speed potential! Show the road who’s boss!", "Time is running out, step on the gas and make every second count towards reaching the next gas tank!", "Stay alert and keep a close eye on the radar, the invader is always on the move!", "Don’t be afraid to take risks, sometimes it’s the only way to catch the invader!", "Remember, it’s a game of cat and mouse. Keep changing your strategy to stay one step ahead.", "Don’t let the invader get too close, or it may be game over!", "Don’t let the invader lure you into a trap, stay focused and drive with caution!", "Drive with precision and make every move count. Every second counts when catching the invader!", "The key to victory is a balance between speed and control.", "Collect power-ups for a boost and give yourself an advantage.", "Keep your cool and stay focused, you never know what’s around the next corner.", "Don’t give up, with determination and practice, you’ll get the hang of it.", "Stay alert, the invader is always on the move and ready to pounce.", "The road ahead may be treacherous, but with quick reflexes and a steady hand, you’ll make it to the finish line.", "Every journey has its challenges, but keep pushing forward, the reward is worth it.", "Drive with style and leave your mark on the road.", "This is not a race! Just catch the invader.", "Stay alert and aware of your surroundings at all times.", "Keep your eyes on the road ahead, and be prepared to dodge obstacles.", "Stay focused, the invader is quick and unpredictable, be ready for anything.", "Remember to take turns carefully, too much speed can cause you to lose control.", "Drive aggressively, but always maintain control of your vehicle.", "Don’t be afraid to try new strategies, sometimes the unexpected can lead to success.", "Drive with confidence, but don’t get too overconfident, the invader is always lurking.", "The road ahead is full of surprises, be prepared for anything and everything.", "Drive fast, but drive smart, it takes both speed and strategy to win.", "Don’t let the invader get too far ahead, stay on its tail and never give up.", "Stay focused, the invader is quick and nimble, be ready for it to make sudden moves.", "Don’t let the invader get the upper hand, stay alert and always be one step ahead.", 			];
 			var models={};
 			models.active = {"Ball-01" : "media/model/active.Ball-01.glb", "Barrel-01" : "media/model/active.Barrel-01.glb", "Barrel-02" : "media/model/active.Barrel-02.glb", "Barrel-03" : "media/model/active.Barrel-03.glb", "Barrel-04" : "media/model/active.Barrel-04.glb", "Barrier-01" : "media/model/active.Barrier-01.glb", "Barrier-02" : "media/model/active.Barrier-02.glb", "Brick-01" : "media/model/active.Brick-01.glb", "Brick-02" : "media/model/active.Brick-02.glb", "Cone-01" : "media/model/active.Cone-01.glb", "Cone-02" : "media/model/active.Cone-02.glb", "Cone-03" : "media/model/active.Cone-03.glb", "Road-Block" : "media/model/active.Road-Block.glb", "Tyre-01" : "media/model/active.Tyre-01.glb", "Tyre-02" : "media/model/active.Tyre-02.glb", "Tyre-03" : "media/model/active.Tyre-03.glb", "Tyres" : "media/model/active.Tyres.glb", };
 models.car = {"Ambulance" : "media/model/car.Ambulance.glb", "Car-01" : "media/model/car.Car-01.glb", "Car-02" : "media/model/car.Car-02.glb", "Police" : "media/model/car.Police.glb", "Race-Car" : "media/model/car.Race-Car.glb", "truck" : "media/model/car.truck.glb", };
 models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb", "Manhole" : "media/model/static.Manhole.glb", "Speed-Booster-01" : "media/model/static.Speed-Booster-01.glb", "Speed-Booster-02" : "media/model/static.Speed-Booster-02.glb", "Speed-Booster-03" : "media/model/static.Speed-Booster-03.glb", };
-
-			function showTip() {
-				const randomTip = tips[Math.floor(Math.random() * tips.length)];
-				$('#tips').text(randomTip);
-			}
-			showTip();
-			setInterval(showTip, 10000);
 		</script>
 	</head>
 
@@ -51,15 +42,16 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb", "Manhol
 		<!-- container -->
 		<div id="start">
 			<div class="content">
-				<h1>
-					Run Run Run! 🚗				</h1>
+				<h1>Run Run Run! 🚗</h1>
 				<p clsss="intro">
 					
 		<h2>Hey there speedster! ⚡</h2><br>
 		<h3>Catch the invader 😡 and don't let it catch you first 🏅</h3>
-		<p>Get ready for a thrilling journey through the landscape. </p>
-		<p>Take control of the wheel and demonstrate your driving abilities as you maneuver around.<br>
-		This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!</p>
+		<p>Get ready for a thrilling journey through the landscape.</p>
+		<p>
+			Take control of the wheel and demonstrate your driving abilities as you maneuver around.<br>
+			This is not a typical drive, so fasten your seatbelt and get ready for an exciting ride!
+		</p>
 					</p>
 				<button onclick="render(); $('#start').addClass('hidden'); $('#container').removeClass('hidden');" class="button">
 					Let's run! 🥇				</button>
@@ -69,8 +61,7 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb", "Manhol
 			<!-- sidebar -->
 			<div id="sidebar">
 				<div>
-					<h1>
-						Run Run Run! 🚗					</h1>
+					<h1>Run Run Run! 🚗</h1>
 					<!-- hide on mobile -->
 					<div class="hidder">
 						<p class="instructions">
@@ -95,6 +86,8 @@ models.static = {"Fire-Hydrant" : "media/model/static.Fire-Hydrant.glb", "Manhol
 						<h3>
 							Revamp the Interface!						</h3>
 						<div id="mainColor" class="colors"></div>
+						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.x=this.value">
+						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.z=this.value;$('#coords').removeClass('hidden');">
 					</div>
 				</div>
 			</div>

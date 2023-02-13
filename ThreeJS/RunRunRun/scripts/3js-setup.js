@@ -5,7 +5,8 @@ console.clear(); // Clears the console
 var target_player;
 var target_invader;
 var target;
-var spanRadio = 40; // Declares a variable for max distance in the world
+var total = 200;
+var spanRadio = 5; // Declares a variable for max distance in the world
 var load = false; // Declares if load is readu
 
 
@@ -181,7 +182,7 @@ var invaderParams = {
 	path: cars[random(0, (cars.length) - 1, 0)][1],
 	scene: scene,
 	physics: {
-		mass: 10,
+		mass: 30,
 		world: world,
 	},
 	position: {
@@ -204,7 +205,7 @@ var playerParams = {
 	path: cars[random(0, (cars.length) - 1, 0)][1],
 	scene: scene,
 	physics: {
-		mass: 10,
+		mass: 30,
 		world: world,
 	},
 	shadow: true,
@@ -217,13 +218,36 @@ createModel(playerParams).then(result => {
 
 	colorChange(mainColor, 'mainColor');
 	colorChange(subColor, 'subColor');
+
+
+	showTip();
+	setInterval(showTip, 10000);
 });
+
+
+// Add player look at to the world
+var playerLookParams = {
+	scene: scene,
+	size: {
+		width: 1,
+		height: 1,
+		depth: 1,
+	},
+	physics: {
+		mass: 10,
+		world: world,
+	},
+	shape: "box"
+};
+var playerLook = createPrimitive(playerLookParams);
+
+
 
 
 // Add active models (Objecst affected by phisics)
 var activeModels = Object.entries(models.active);
 var activeModelsPosition = spanRadio;
-var activeModelsTotal = 200;
+var activeModelsTotal = total;
 var activeObjects = [];
 var activeObjectsParams = [];
 for (var i = 0; i < activeModelsTotal; i++) {
@@ -231,7 +255,7 @@ for (var i = 0; i < activeModelsTotal; i++) {
 		var activeParams = {
 			scene: scene,
 			physics: {
-				mass: 5,
+				mass: 1,
 				world: world,
 			},
 			shadow: true,
@@ -325,8 +349,8 @@ var renderData = {
 	direction: new THREE.Vector3(),
 	camera: {
 		position: {
-			x: 5, //0
-			y: 10,
+			x: 2.5, //0
+			y: 20,
 			z: 10
 		},
 
@@ -335,7 +359,7 @@ var renderData = {
 			y: 0,
 			z: 0,
 		},
-		time: 5,
+		time: 2,
 	},
 	light: {
 		position: {
@@ -352,12 +376,11 @@ var pos = {
 	y: 0,
 	z: 0
 };
-var zoneDistance = spanRadio;
+var zoneDistance = spanRadio * 4;
 var timeCam;
 var CamX;
 var CamY;
 var CamZ;
-var CamDist = 2;
 // Render loop
 function render() {
 	if (target) {
@@ -367,10 +390,14 @@ function render() {
 		// Get the current time
 		var time = performance.now();
 		var delta = (time - prevTime) / 1000;
-		renderData = updateControls(renderData, time, prevTime, target_player);
+		renderData = updateControls(renderData, time, prevTime, player);
+
+
 
 		updatePosition(invader);
-		//updatePosition(player);
+		//updatePosition(playerLook);
+
+		//player.model.lookAt(playerLook.model.position);
 
 		//updatePosition(activeObject);
 
@@ -399,7 +426,7 @@ function render() {
 		});
 
 
-		var targetCoordinates = coordinatesBetween(target_player.body.position, target_invader.body.position);
+		var targetCoordinates = coordinatesBetween(target_player.body.position, target_invader.body.position, true, false);
 		$('#direction #arrow').css('transform', 'rotate(' + targetCoordinates.rotation.xz + 'deg)');
 		$('#direction #distance').text(round(targetCoordinates.distance, 0) + ' km');
 		$('#direction #distance').css('font-size', ((round(targetCoordinates.distance, 0) - zoneDistance) / 5) + 'px');
@@ -407,40 +434,42 @@ function render() {
 
 		if (targetCoordinates.distance < zoneDistance) {
 			target = target_invader.body;
-			timeCam = updateData.camera.time;
-			CamX = updateData.camera.position.x + CamDist;
-			CamY = updateData.camera.position.y + CamDist;
-			CamZ = updateData.camera.position.z + CamDist;
+			CamX = (target_invader.body.position.x + target_player.body.position.x) / 2;
+			CamY = (target_invader.body.position.y + target_player.body.position.y) / 2;
+			CamZ = (target_invader.body.position.z + target_player.body.position.z) / 2;
+
+			timeCam = updateData.camera.time * 1.25;
 			$('#direction #arrow').text('adjust');
 		} else {
 			target = target_player.body;
-			timeCam = updateData.camera.time * .5;
-			CamX = updateData.camera.position.x;
-			CamY = updateData.camera.position.y;
-			CamZ = updateData.camera.position.z;
+			timeCam = updateData.camera.time;
+			CamX = target_player.body.position.x;
+			CamY = target_player.body.position.y;
+			CamZ = target_player.body.position.z;
+
 			$('#direction #arrow').text('straight');
 		}
 
 		// Update the position of the light
-		TweenLite.to(light.position, updateData.light.time, {
-			x: target_player.body.position.x + updateData.light.position.x,
-			y: target_player.body.position.y + updateData.light.position.y,
-			z: target_player.body.position.z + updateData.light.position.z,
+		TweenLite.to(light.position, renderData.light.time, {
+			x: target_player.body.position.x + renderData.light.position.x,
+			y: target_player.body.position.y + renderData.light.position.y,
+			z: target_player.body.position.z + renderData.light.position.z,
 			ease: Elastic.easeOut
 		});
 		// Update the position of the camera
-		TweenLite.to(camera.position, updateData.camera.time, {
-			x: target_player.body.position.x + CamX,
-			y: target_player.body.position.y + CamY,
-			z: target_player.body.position.z + CamZ,
+		TweenLite.to(camera.position, renderData.camera.time, {
+			x: renderData.camera.position.x + CamX,
+			y: renderData.camera.position.y + CamY,
+			z: renderData.camera.position.z + CamZ,
 			ease: Elastic.easeOut
 		});
 
 		// Update the position of the camera
 		TweenLite.to(pos, timeCam, {
-			x: target_player.body.position.x,
-			y: target_player.body.position.y,
-			z: target_player.body.position.z,
+			x: target.position.x,
+			y: target.position.y,
+			z: target.position.z,
 			ease: Elastic.easeOut
 		});
 
@@ -464,4 +493,24 @@ function render() {
 		renderer.render(scene, camera);
 		prevTime = time;
 	}
+}
+
+
+function moveTarget(target, distance, timer) {
+	var time = random(timer / 2, timer);
+	var InvaderNewX = random(-distance, distance);
+	var InvaderNewZ = random(-distance, distance);
+	console.log({
+		time,
+		InvaderNewX,
+		InvaderNewZ,
+	});
+	var tw = TweenLite.to(target, time, {
+		x: InvaderNewX,
+		z: InvaderNewZ,
+		ease: Linear.easeNone,
+		onComplete: function () {
+			moveTarget(target, distance, timer);
+		}
+	});
 }

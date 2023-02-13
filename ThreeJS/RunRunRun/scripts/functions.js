@@ -9,6 +9,7 @@ const defaultSound = {
 	reverse: false,
 };
 
+// Creates a player for an audio file and plays the sound
 function playSound(params = defaultSound) {
 	// Create a player for the audio file
 	var player = new Tone.Player(params.audio);
@@ -50,12 +51,16 @@ function playSound(params = defaultSound) {
 	return player;
 }
 
+// Function to set the pitch of a sound player
 function soundPitch(player, val) {
+	// Disconnect the current pitch if it exists
 	if (player.pitch) {
 		player.pitch.disconnect();
 	}
+	// Create a new PitchShift object with the specified value and connect it to the destination
 	player.pitch = new Tone.PitchShift(val).toDestination();
 	player.connect(player.pitch);
+	// Return the created pitch object
 	return player.pitch;
 }
 
@@ -184,7 +189,6 @@ function createCSSColors(colors) {
 	// Add the main and sub colors to the colorCSS string
 	colorCSS += '--color-main:var(--color-' + mainColor + ');\n';
 	colorCSS += '--color-sub:var(--color-' + subColor + ');\n';
-	console.log(mainColor);
 	// Combine the colorCSS and colorsCSS strings into a single CSS code string
 	var colorCSSCode = ':root {\n' + colorCSS + '\n}\n' + colorsCSS;
 	if ($('#colors-css').length) {
@@ -195,16 +199,21 @@ function createCSSColors(colors) {
 	return;
 }
 
+// Creates color buttons and adds them to the specified parent element
 function createColorButtons(target, parent, colors) {
+	// Clears the parent element
 	$(parent).html('');
-
+	// Loops through each color
 	for (var i = 0; i < colors.length; i++) {
 		var colorName = colors[i][0];
+		// Appends a new button element to the parent element with the color name and specified target, and adds onClick event listener to trigger the colorChange function
 		$(parent).append('<button onClick="colorChange(\'' + colorName + '\', \'' + target + '\');" title="' + colorName + '" class="color ' + colorName + ' ' + colorName + '-bg"></button>');
 	}
 }
 
+// Returns the hexadecimal representation of a color based on its name
 function getColorByName(name) {
+	// Loop through colors array
 	for (var i = 0; i < colors.length; i++) {
 		if (colors[i][0] == name) {
 			return colors[i][1];
@@ -212,25 +221,34 @@ function getColorByName(name) {
 	}
 }
 
+// Update colors when selected
 function colorChange(color, target) {
-	$('#'+target+' .color.selected').removeClass('selected');
-	$('#'+target+' .color.'+color).addClass('selected');
-
-	console.log(color);
+	// remove the class 'selected' from the previously selected color add class 'selected' to the selected color
+	$('#' + target + ' .color.selected').removeClass('selected');
+	$('#' + target + ' .color.' + color).addClass('selected');
+	// update the global variable with the selected color
 	window[target] = color;
+	// create CSS colors
 	createCSSColors(colors);
+	// get the hexadecimal representation of the color
 	var colorHex = getColorByName(color);
+	// if the target is mainColor
 	if (target == 'mainColor') {
 		scene.background = new THREE.Color(colorHex);
 		scene.fog = new THREE.Fog(colorHex, sceneParams.near, sceneParams.far);
 	}
-
+	// if the target is subColor
 	if (target == 'subColor') {
 		var material = floor.model.material;
 		material.color.set(new THREE.Color(colorHex));
 	}
 }
 
+// Get a random tip from the `tips` array
+function showTip() {
+	const randomTip = tips[Math.floor(Math.random() * tips.length)];
+	$('#tips').text(randomTip);
+}
 
 /* Keyboard controls */
 var movement = {
@@ -295,9 +313,11 @@ const keys = [{
 		movement: 'jump'
 	},
 ];
+
 // Adds keydown and keyup event listeners to the document
 document.addEventListener("keydown", onKeyDown, false);
 document.addEventListener("keyup", onKeyUp, false);
+
 // Function that executes when a key is pressed down
 function onKeyDown(event) {
 	var code = event.keyCode;
@@ -306,6 +326,7 @@ function onKeyDown(event) {
 		movement[key.movement] = true;
 	}
 }
+
 // Function that executes when a key is released
 function onKeyUp(event) {
 	var code = event.keyCode;
@@ -313,8 +334,4 @@ function onKeyUp(event) {
 	if (key) {
 		movement[key.movement] = false;
 	}
-}
-
-function add_GUI(folder, object, input) {
-	return folder.add(object, input).listen();
 }

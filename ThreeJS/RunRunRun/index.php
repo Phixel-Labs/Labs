@@ -8,13 +8,11 @@
 		<!-- character encoding -->
 		<meta charset="UTF-8">
 		<!-- title, description, keywords, author, and copyright -->
-		<title>
-			<?php echo $data['title']; ?>
-		</title>
+		<title><?php echo $data['title']; ?></title>
 		<meta name="description" content="<?php echo $data['description']; ?>">
 		<meta name="keywords" content="<?php echo $data['keywords']; ?>">
 		<meta name="author" content="<?php echo $data['copyright'] ?>">
-		<meta name="copyright" content="<?php echo $data['copyright']; ?> | © <?php echo date('Y'); ?> ">
+		<meta name="copyright" content="<?php echo $data['copyright']; ?> | © Copyright <?php echo date('Y'); ?> ">
 		<link rel="canonical" href="<?php echo $data['url']; ?>">
 		<!-- viewport setting -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +27,13 @@
 			$dependencies['cloudflare'] ='https://cdnjs.cloudflare.com/ajax/libs';
 			$dependencies['unpkg'] ='https://unpkg.com';
 
-			$lib['cloudflare']['jquery']='jquery/3.6.3/jquery.min.js';
+			$lib['cloudflare']['jQuery']='jquery/3.6.3/jquery.min.js';
 			$lib['cloudflare']['gsap']='gsap/3.11.4/gsap.min.js';
 			$lib['cloudflare']['threeJS']='three.js/r119/three.min.js';
 			$lib['unpkg']['GLTFLoader']='three@0.126.0/examples/js/loaders/GLTFLoader.js';
 			$lib['cloudflare']['cannonJS']='cannon.js/0.6.2/cannon.min.js';
-			$lib['cloudflare']['toneJS']='tone/14.8.49/Tone.js';
+			//$lib['cloudflare']['toneJS']='tone/14.8.49/Tone.js';
+			//$lib['cloudflare']['nippleJS']='nipplejs/0.10.0/nipplejs.js';
 			// $lib['cloudflare']['dat-gui']='dat-gui/0.7.9/dat.gui.min.js';
 			// $lib['cloudflare']['chromaJS']='chroma-js/2.4.2/chroma.min.js';
 
@@ -49,7 +48,7 @@
 		<script src="./scripts/functions.js"></script>
 		<script src="./scripts/3js-functions.js"></script>
 		<script src="./scripts/3js-setup.js" defer></script>
-		<script defer>
+		<script>
 			var tips = [ 
 				<?php
 					foreach($data['tips'] as $key => $value) {
@@ -67,13 +66,6 @@
 					echo '};'."\n";
 				}
 			?>
-
-			function showTip() {
-				const randomTip = tips[Math.floor(Math.random() * tips.length)];
-				$('#tips').text(randomTip);
-			}
-			showTip();
-			setInterval(showTip, 10000);
 		</script>
 	</head>
 
@@ -81,9 +73,7 @@
 		<!-- container -->
 		<div id="start">
 			<div class="content">
-				<h1>
-					<?php echo $data['title']; ?>
-				</h1>
+				<h1><?php echo $data['shortTitle']; ?></h1>
 				<p clsss="intro">
 					<?php echo $data['intro']; ?>
 				</p>
@@ -96,9 +86,7 @@
 			<!-- sidebar -->
 			<div id="sidebar">
 				<div>
-					<h1>
-						<?php echo $data['title']; ?>
-					</h1>
+					<h1><?php echo $data['shortTitle']; ?></h1>
 					<!-- hide on mobile -->
 					<div class="hidder">
 						<p class="instructions">
@@ -116,6 +104,8 @@
 							<?php echo $data['mainColor']; ?>
 						</h3>
 						<div id="mainColor" class="colors"></div>
+						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.x=this.value">
+						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.z=this.value;$('#coords').removeClass('hidden');">
 					</div>
 				</div>
 			</div>
