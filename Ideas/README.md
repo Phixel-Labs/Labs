@@ -11,6 +11,13 @@ We are a team of specialized designers and developers with experience in unique 
 
 Phixel has several ideas for new platforms and applications that cater to the growing demand for innovative solutions in various markets, such as VR/AR, sustainable economy, healthy habits, education, and localized markets, among others. Our focus is on creating digital solutions that are not only effective but also fun and engaging.
 
+Please note that the ideas presented in this repository are subject to change. As we continue to explore and develop new digital solutions, some of the ideas may be discarded or revised, while new ones may be added.
+
+We strive to keep this repository up to date with our latest thinking and ideas, but we do not guarantee that all the information presented here is current or accurate. If you are interested in working with us or learning more about our digital solutions, we recommend that you contact us directly to discuss your needs and requirements.
+
+Please also note that the information presented in this repository is for reference purposes only, and does not constitute a commercial product or service. We do not accept any liability for any damages or losses resulting from the use of the information presented in this repository.
+
+
 ## Our skills
 
 -   Creation and production of promotional videos, animations, and explanatory videos.
