@@ -1,5 +1,6 @@
 
 # Phixel Ideas
+View in 
 | [English](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/en.md) | [Español](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/es.md) |
 |-|-|
 ## Who we are
