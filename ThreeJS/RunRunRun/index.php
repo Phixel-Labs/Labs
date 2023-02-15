@@ -1,8 +1,7 @@
-<?php
-	ob_start();
-	require('data.php');
+<?php	
+	ob_start(); // Start output buffering
+	require('data.php');	// Include the contents fo data feed
 ?>
-
 <html>
 	<head>
 		<!-- character encoding -->
@@ -43,30 +42,34 @@
 				}
 			}
 		?>
-
-		<!-- JS custom scripts -->
+		<!-- JavaScript custom scripts -->
 		<script src="./scripts/functions.js"></script>
 		<script src="./scripts/3js-functions.js"></script>
 		<script src="./scripts/3js-setup.js" defer></script>
-		<script>
-			var tips = [ 
-				<?php
-					foreach($data['tips'] as $key => $value) {
-						echo '"'.$value.'", ';
-					} 
-				?>
-			];
-			var models={};
-			<?php
-				foreach($data['models'] as $key => $value) {
-					echo 'models.'.$key.' = {';
-					foreach($value as $key_ => $value_) {
-						echo '"'.$key_.'" : "'.$value_.'", ';
-					} 
-					echo '};'."\n";
+		<?php
+			echo '<script>'."\n";
+			// Define the tips in a JavaScript array
+			echo 'var tips = [';
+			foreach($data['tips'] as $key => $value) {
+				echo '"'.$value.
+				'", ';
+			}			
+			echo '];'."\n";
+
+			// Define the models in a JavaScript array
+			echo 'var models = {};'."\n";
+			foreach($data['models'] as $key => $value) {
+				echo 'models.'.$key.
+				' = {';
+				foreach($value as $key_ => $value_) {
+					echo '"'.$key_.
+					'" : "'.$value_.
+					'", ';
 				}
-			?>
-		</script>
+				echo '};'."\n";
+			}
+			echo '</script>'."\n";
+		?>
 	</head>
 
 	<body>
@@ -74,9 +77,7 @@
 		<div id="start">
 			<div class="content">
 				<h1><?php echo $data['shortTitle']; ?></h1>
-				<p clsss="intro">
-					<?php echo $data['intro']; ?>
-				</p>
+				<div class="intro"><?php echo $data['intro']; ?></div>
 				<button onclick="render(); $('#start').addClass('hidden'); $('#container').removeClass('hidden');" class="button">
 					<?php echo $data['start']; ?>
 				</button>
@@ -89,20 +90,12 @@
 					<h1><?php echo $data['shortTitle']; ?></h1>
 					<!-- hide on mobile -->
 					<div class="hidder">
-						<p class="instructions">
-							<?php echo $data['instructions']; ?>
-						</p>
+						<p class="instructions"><?php echo $data['instructions']; ?></p>
 						<br>
-						<h2>
-							<?php echo $data['color']; ?>
-						</h2>
-						<h3>
-							<?php echo $data['subColor']; ?>
-						</h3>
+						<h2><?php echo $data['color']; ?></h2>
+						<h3><?php echo $data['subColor']; ?></h3>
 						<div id="subColor" class="colors"></div>
-						<h3>
-							<?php echo $data['mainColor']; ?>
-						</h3>
+						<h3><?php echo $data['mainColor']; ?></h3>
 						<div id="mainColor" class="colors"></div>
 						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.x=this.value">
 						<input type="range" step=".01" min="-3" max="3" oninput="target_player.model.rotation.z=this.value;$('#coords').removeClass('hidden');">
@@ -120,8 +113,7 @@
 				</div>
 				<div id="info">
 					<div>
-						<span id="speed">0</span>
-						km
+						<span id="speed">0</span> km
 					</div>
 					<div id="tips"></div>
 					<div id="coords" class="hidden"></div>
@@ -133,10 +125,11 @@
 			</button>
 		</div>
 	</body>
+
 </html>
-<?
-	$html = ob_get_clean();
-	$html = trim($html);
-	file_put_contents('index.html', $html);
-	echo $html;
+<?php
+	$html = ob_get_clean(); // Get the contents of the output buffer and clear it	
+	$html = trim($html); // Remove any whitespace from the beginning and end of the HTML
+	file_put_contents('index.html', $html);// Write the HTML to a file named 'index.html'
+	echo $html; // Echo the HTML to the browser
 ?>

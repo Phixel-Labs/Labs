@@ -7,7 +7,7 @@ var target_invader;
 var target;
 var total = 200;
 var spanRadio = 5; // Declares a variable for max distance in the world
-var load = false; // Declares if load is readu
+var load = false; // Declares if load is ready
 
 
 // Creates an array of color values
@@ -193,10 +193,12 @@ var invaderParams = {
 	shadow: true,
 };
 var invader;
-createModel(invaderParams).then(result => {
-	invader = result;
-	target_invader = invader;
-});
+createModel(invaderParams).then(
+	result => {
+		invader = result;
+		target_invader = invader;
+	}
+);
 
 
 // Add player to the world
@@ -211,18 +213,20 @@ var playerParams = {
 	shadow: true,
 };
 var player;
-createModel(playerParams).then(result => {
-	player = result;
-	target_player = player;
-	target = target_player;
+createModel(playerParams).then(
+	result => {
+		player = result;
+		target_player = player;
+		target = target_player;
 
-	colorChange(mainColor, 'mainColor');
-	colorChange(subColor, 'subColor');
+		colorChange(mainColor, 'mainColor');
+		colorChange(subColor, 'subColor');
 
 
-	showTip();
-	setInterval(showTip, 10000);
-});
+		showTip();
+		setInterval(showTip, 10000);
+	}
+);
 
 
 // Add player look at to the world
@@ -275,7 +279,7 @@ for (var i = 0; i < activeModelsTotal; i++) {
 			activeObjects[i] = result;
 		});
 	})(i);
-}
+};
 
 // Trace necesary elements
 var params = {
@@ -350,10 +354,9 @@ var renderData = {
 	camera: {
 		position: {
 			x: 2.5, //0
-			y: 20,
-			z: 10
+			y: 10,
+			z: 588
 		},
-
 		rotation: {
 			x: 0,
 			y: 0,
@@ -369,7 +372,7 @@ var renderData = {
 		},
 		time: 30,
 	},
-}
+};
 
 var pos = {
 	x: 0,
