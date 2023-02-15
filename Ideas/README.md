@@ -1,6 +1,7 @@
 
 # Phixel Ideas
-
+| [English](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/en.md) | [Español](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/es.md) |
+|-|-|
 ## Who we are
 
 We are a team of specialized designers and developers with experience in unique digital solutions. Our passion is to create innovative and creative solutions that meet the needs of our clients.
@@ -38,4 +39,4 @@ If you have any questions or concerns about this project or our services, please
 
 ## Explore for more
 
-Visit our website to learn more about our services and projects. We offer our services in  [English](/en.md)  and  [Spanish](/es.md).
+Visit our website to learn more about our services and projects.
