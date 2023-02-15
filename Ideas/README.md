@@ -30,6 +30,10 @@ Additionally, Phixel does not claim ownership of any trademarks or intellectual 
 Please contact us if you have any questions or concerns about our ideas or services. Thank you.
 
 ## Note
+Please note that any estimates provided in this document are subject to change. An estimate is an approximation of a value based on available information at a given point in time, and as such, may need to be updated as circumstances change or new information becomes available.
+
+Please also note that estimates are not guarantees or commitments, and actual results may differ from the estimates provided. We do not accept any liability for any damages or losses resulting from the use of estimates provided in this document.
+
 This repository was created by Phixel to showcase our ideas for new platforms and applications in various markets. The content and information provided in this repository are for reference purposes only, and do not constitute a commercial product or service.
 
 While we strive to ensure the accuracy and completeness of the information presented in this repository, we do not guarantee its reliability or suitability for any particular purpose. Any use or modification of the ideas presented in this repository is at the user's own risk.
