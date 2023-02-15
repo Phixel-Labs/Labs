@@ -38,4 +38,4 @@ If you have any questions or concerns about this project or our services, please
 
 ## Explore for more
 
-Visit our website to learn more about our services and projects. We offer our services in  [English](/en.md)  and  [Spanish](/es.md).
+Visit our website to learn more about our services and projects. We offer our services in  [English](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/en.md)  and  [Spanish](https://github.com/Phixel-Labs/Labs/blob/main/Ideas/es.md).
